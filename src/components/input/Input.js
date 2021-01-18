@@ -22,7 +22,8 @@ function Input({ secretWord }) {
           className="btn btn-primary mb-2"
           Submit
           onClick={(e) => {
-            preventDefault();
+            e.preventDefault();
+            setCurrentGuess("");
           }}
         >
           Submit buttonn
