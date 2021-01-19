@@ -1,5 +1,5 @@
 import moxios from "moxios";
-import { getSecretWord } from "./hookActions";
+import hookActions from "./hookActions";
 
 describe("moxios tests", () => {
   beforeEach(() => {
@@ -21,7 +21,7 @@ describe("moxios tests", () => {
 
     const mockSetSecretWord = jest.fn();
 
-    await getSecretWord(mockSetSecretWord);
+    await hookActions.getSecretWord(mockSetSecretWord);
     expect(mockSetSecretWord).toHaveBeenCalledWith(secretWord);
   });
 });
