@@ -20,9 +20,10 @@ function Input({ secretWord }) {
         <button
           data-test="submit-button"
           className="btn btn-primary mb-2"
-          Submit
+          type="submit"
           onClick={(e) => {
-            preventDefault();
+            e.preventDefault();
+            setCurrentGuess("");
           }}
         >
           Submit buttonn
