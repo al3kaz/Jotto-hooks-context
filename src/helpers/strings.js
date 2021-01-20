@@ -55,3 +55,16 @@ const languageStrings = {
     // END: Challenge #5: Server Error
   },
 };
+
+function getStringByLanguage(
+  languageCode,
+  stringKey,
+  strings = languageStrings
+) {
+  if (!strings[languageCode] || !strings[languageCode][stringKey]) {
+    return strings.en[stringKey];
+  }
+  return strings[languageCode][stringKey];
+}
+
+export default { getStringByLanguage };
