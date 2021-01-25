@@ -43,7 +43,10 @@ const GuessedWords = () => {
           </thead>
           <tbody>{guessedWordsRows}</tbody>
         </table>
-        <div>Total Guesses: {guessedWordsRows.length}</div>
+        <div>
+          {stringsModule.getStringByLanguage(laguange, "totalCount")}:
+          {guessedWordsRows.length}
+        </div>
       </div>
     );
   }

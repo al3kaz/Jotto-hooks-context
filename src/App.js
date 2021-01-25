@@ -10,6 +10,7 @@ import Congrats from "./components/congrats/Congrats";
 import GuessedWords from "./components/guessedWords/GuessedWords";
 import NewWordButton from "./components/newWordButton/NewWordButton";
 import "./App.css";
+import GiveUpButton from "./components/giveUpButton/GiveUpButton";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -17,6 +18,8 @@ function reducer(state, action) {
       return { ...state, secretWord: action.payload };
     case "setLanguage":
       return { ...state, language: action.payload };
+    case "setGiveUp":
+      return { ...state, giveUp: action.payload };
     default:
       throw new Error(`invalid aciotn type: ${action.type}`);
   }
@@ -33,6 +36,10 @@ function App() {
 
   const setLanguage = (language) => {
     dispatch({ type: "setLanguage", payload: language });
+  };
+
+  const setGiveUp = (giveUp) => {
+    dispatch({ type: "setGiveUp", payload: giveUp });
   };
 
   React.useEffect(() => {
@@ -60,6 +67,7 @@ function App() {
           <successContext.SuccessProvider>
             <Congrats />
             <NewWordButton setSecretWord={setSecretWord} />
+            {state.giveUp ? <GiveUpButton setGiveUp={setGiveUp} /> : ""}
             <Input secretWord={state.secretWord} />
           </successContext.SuccessProvider>
           <GuessedWords />

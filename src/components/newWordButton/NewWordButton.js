@@ -10,7 +10,7 @@ import stringsModule from "../../helpers/strings";
 
 function NewWordButton(props) {
   const [success, setSuccess] = successContext.useSuccess();
-  const [setGuessedWords] = guessedWordsContext.useGuessedWords();
+  const [guessedWord, setGuessedWords] = guessedWordsContext.useGuessedWords();
   const language = React.useContext(languageContext);
 
   const handleClick = () => {

@@ -7,19 +7,22 @@ import hookActions from "../../actions/hookActions";
 
 import successContext from "../../contexts/successContext";
 import guessedWordsContext from "../../contexts/guessedWordsContext";
+import languageContext from "../../contexts/languageContext";
 
 const mockSetSuccess = jest.fn();
 
 const setup = ({ success, language, setSecretWord }) => {
   success = success || false;
-  language = language || false;
+  language = language || "en";
 
   return mount(
-    <guessedWordsContext.GuessedWordsProvider>
-      <successContext.SuccessProvider value={[success, mockSetSuccess]}>
-        <NewWordButton setSecretWord={setSecretWord} />
-      </successContext.SuccessProvider>
-    </guessedWordsContext.GuessedWordsProvider>
+    <languageContext.Provider value={language}>
+      <guessedWordsContext.GuessedWordsProvider>
+        <successContext.SuccessProvider value={[success, mockSetSuccess]}>
+          <NewWordButton setSecretWord={setSecretWord} />
+        </successContext.SuccessProvider>
+      </guessedWordsContext.GuessedWordsProvider>
+    </languageContext.Provider>
   );
 };
 
@@ -67,10 +70,12 @@ describe("actions on click", () => {
 describe("languagePicker", () => {
   test("correctly renders button text string in english", () => {
     const wrapper = setup({ success: true });
-    expect(wrapper.text()).toBe("New Word");
+    const component = findByTestAttr(wrapper, "component-new-word-button");
+    expect(component.text()).toBe("New Word");
   });
   test("correctly renders button text string in emoji", () => {
     const wrapper = setup({ success: true, language: "emoji" });
-    expect(wrapper.text()).toBe("✨🔤");
+    const component = findByTestAttr(wrapper, "component-new-word-button");
+    expect(component.text()).toBe("✨🔤");
   });
 });
