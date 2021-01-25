@@ -23,14 +23,15 @@ const GuessedWords = () => {
     ));
     contents = (
       <div data-test="guessed-words">
-        <h3>
-          {stringsModule.getStringByLanguage(laguange, "guessColumnHeader")}
-        </h3>
+        <h3>{stringsModule.getStringByLanguage(laguange, "guessedWords")}</h3>
         <table className="table table-sm">
           <thead className="thead-light">
             <tr>
               <th>
-                {stringsModule.getStringByLanguage(laguange, "guessedWords")}
+                {stringsModule.getStringByLanguage(
+                  laguange,
+                  "guessColumnHeader"
+                )}
               </th>
               <th>
                 {stringsModule.getStringByLanguage(
@@ -42,6 +43,7 @@ const GuessedWords = () => {
           </thead>
           <tbody>{guessedWordsRows}</tbody>
         </table>
+        <div>Total Guesses: {guessedWordsRows.length}</div>
       </div>
     );
   }

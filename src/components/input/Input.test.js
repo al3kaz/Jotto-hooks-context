@@ -4,13 +4,20 @@ import { mount } from "enzyme";
 import { findByTestAttr, checkProps } from "../../../test/testUtils";
 import Input from "./Input";
 import LanguageContext from "../../contexts/languageContext";
+import successContext from "../../contexts/successContext";
+import guessedWordsContext from "../../contexts/guessedWordsContext";
 
-const setup = ({ secretWord, language }) => {
+const setup = ({ secretWord, language, success }) => {
   language = language || "en";
   secretWord = secretWord || "party";
+  success = success || false;
   return mount(
     <LanguageContext.Provider value={language}>
-      <Input secretWord={secretWord} />
+      <guessedWordsContext.GuessedWordsProvider>
+        <successContext.SuccessProvider value={[success, jest.fn()]}>
+          <Input secretWord={secretWord} />
+        </successContext.SuccessProvider>
+      </guessedWordsContext.GuessedWordsProvider>
     </LanguageContext.Provider>
   );
 };
@@ -60,4 +67,9 @@ describe("state controlled input field", () => {
     submitButton.simulate("click", { preventDefault() {} });
     expect(mockSetCurrentGuess).toHaveBeenCalledWith("");
   });
+});
+
+test("input component does not show when success is true", () => {
+  const wrapper = setup({ secretWord: "party", success: true });
+  expect(wrapper.isEmptyRender()).toBe(true);
 });
