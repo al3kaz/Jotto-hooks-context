@@ -11,15 +11,17 @@ import languageContext from "../../contexts/languageContext";
 
 const mockSetSuccess = jest.fn();
 
-const setup = ({ success, language, setSecretWord }) => {
+const setup = ({ success, language, setSecretWord, setGiveUp }) => {
   success = success || false;
   language = language || "en";
+  setGiveUp = setGiveUp || function () {};
+  setSecretWord = setSecretWord || function () {};
 
   return mount(
     <languageContext.Provider value={language}>
       <guessedWordsContext.GuessedWordsProvider>
         <successContext.SuccessProvider value={[success, mockSetSuccess]}>
-          <NewWordButton setSecretWord={setSecretWord} />
+          <NewWordButton setSecretWord={setSecretWord} setGiveUp={setGiveUp} />
         </successContext.SuccessProvider>
       </guessedWordsContext.GuessedWordsProvider>
     </languageContext.Provider>
@@ -44,17 +46,25 @@ describe("render", () => {
   });
 });
 test("does not throw warning with expected props", () => {
-  const expectedProps = { setSecretWord: function () {} };
+  const expectedProps = {
+    setSecretWord: function () {},
+    setGiveUp: function () {},
+  };
   checkProps(NewWordButton, expectedProps);
 });
 
 describe("actions on click", () => {
   const mockGetSecretWord = jest.fn();
+  const mockSetGiveUp = jest.fn();
 
   beforeEach(() => {
     hookActions.getSecretWord = mockGetSecretWord;
 
-    const wrapper = setup({ success: true, setSecretWord: jest.fn() });
+    const wrapper = setup({
+      success: true,
+      setSecretWord: jest.fn(),
+      setGiveUp: mockSetGiveUp,
+    });
     const component = findByTestAttr(wrapper, "component-new-word-button");
     component.simulate("click");
   });
@@ -64,7 +74,9 @@ describe("actions on click", () => {
   test("resets success to false on click", () => {
     expect(mockSetSuccess).toHaveBeenCalledWith(false);
   });
-  // test("resets givenUp to false on click", () => {});
+  test("resets giveUp to false on click", () => {
+    expect(mockSetGiveUp).toHaveBeenCalledWith(false);
+  });
 });
 
 describe("languagePicker", () => {

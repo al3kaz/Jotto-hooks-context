@@ -9,8 +9,10 @@ import LanguagePicker from "./components/languagePicker/languagePicker";
 import Congrats from "./components/congrats/Congrats";
 import GuessedWords from "./components/guessedWords/GuessedWords";
 import NewWordButton from "./components/newWordButton/NewWordButton";
-import "./App.css";
 import GiveUpButton from "./components/giveUpButton/GiveUpButton";
+import SecretWordReveal from "./components/secretWordReveal/SecretWordReveal";
+
+import "./App.css";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -65,10 +67,17 @@ function App() {
         <LanguagePicker setLanguage={setLanguage} />
         <guessedWordsContext.GuessedWordsProvider>
           <successContext.SuccessProvider>
-            <Congrats />
-            <NewWordButton setSecretWord={setSecretWord} />
-            {state.giveUp ? <GiveUpButton setGiveUp={setGiveUp} /> : ""}
+            {state.giveUp ? (
+              <SecretWordReveal secretWord={state.secretWord} />
+            ) : (
+              <Congrats />
+            )}
+            <NewWordButton
+              setSecretWord={setSecretWord}
+              setGiveUp={setGiveUp}
+            />
             <Input secretWord={state.secretWord} />
+            {!state.giveUp ? <GiveUpButton setGiveUp={setGiveUp} /> : ""}
           </successContext.SuccessProvider>
           <GuessedWords />
         </guessedWordsContext.GuessedWordsProvider>

@@ -10,6 +10,8 @@ const languageStrings = {
     newWord: "New Word",
     totalCount: "Total Guesses ",
     reveal: "The secret word was",
+    giveUp: "Give Up",
+    secretWordWas: "The secret word was",
     betterLuck: "Better luck next time!",
   },
   emoji: {
@@ -23,6 +25,8 @@ const languageStrings = {
     newWord: "✨🔤",
     totalCount: "🧮",
     reveal: "🤫🔤",
+    giveUp: "😩",
+    secretWordWas: "🤫🔤",
     betterLuck: "🍀✨🔤",
   },
 };

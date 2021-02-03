@@ -8,7 +8,7 @@ import languageContext from "../../contexts/languageContext";
 
 import stringsModule from "../../helpers/strings";
 
-function NewWordButton(props) {
+function NewWordButton({ setGiveUp, setSecretWord }) {
   const [success, setSuccess] = successContext.useSuccess();
   const [guessedWord, setGuessedWords] = guessedWordsContext.useGuessedWords();
   const language = React.useContext(languageContext);
@@ -16,7 +16,8 @@ function NewWordButton(props) {
   const handleClick = () => {
     setSuccess(false);
     setGuessedWords([]);
-    hookActions.getSecretWord(props.setSecretWord);
+    setGiveUp(false);
+    hookActions.getSecretWord(setSecretWord);
   };
 
   if (success) {
@@ -36,6 +37,7 @@ function NewWordButton(props) {
 
 NewWordButton.propType = {
   setSecretWord: PropTypes.func.isRequired,
+  setGiveUp: PropTypes.func.isRequired,
 };
 
 export default NewWordButton;
