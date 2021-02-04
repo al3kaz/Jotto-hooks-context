@@ -21,8 +21,9 @@ function EntrySecretWord({ setEnterSecretWord, setSecretWord }) {
           className="btn btn-primary mb-2"
           onClick={(e) => {
             e.preventDefault();
-            setEnterSecretWord(false);
+            if (!entryWord) return alert("put secret word");
             setSecretWord(entryWord);
+            setEnterSecretWord(false);
             setEntryWord("");
           }}
         >

@@ -50,8 +50,8 @@ describe("submit calls the correct functions", () => {
     mockSetSecretWord.mockClear();
     React.useState = jest.fn(() => ["train", mockSetEntryWord]);
     wrapper = setup({
-      setEnterSecretWord: { mockSetEnterSecretWord },
-      setSecretWord: { mockSetSecretWord },
+      setEnterSecretWord: mockSetEnterSecretWord,
+      setSecretWord: mockSetSecretWord,
     });
 
     //simulate entering word into input
