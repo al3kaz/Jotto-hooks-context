@@ -13,6 +13,7 @@ const languageStrings = {
     giveUp: "Give Up",
     secretWordWas: "The secret word was",
     betterLuck: "Better luck next time!",
+    enterSecretWord: "Enter your own secret word",
   },
   emoji: {
     congrats: "🎯🎉",
@@ -28,6 +29,7 @@ const languageStrings = {
     giveUp: "😩",
     secretWordWas: "🤫🔤",
     betterLuck: "🍀✨🔤",
+    enterSecretWord: "👩‍💻🤫🔤",
   },
 };
 

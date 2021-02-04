@@ -13,6 +13,8 @@ import GiveUpButton from "./components/giveUpButton/GiveUpButton";
 import SecretWordReveal from "./components/secretWordReveal/SecretWordReveal";
 
 import "./App.css";
+import EnterSecretWordButton from "./components/enterSecretWordButton/EnterSecretWordButton";
+import EntrySecretWord from "./components/entrySecretWord/EntrySecretWord";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -22,6 +24,8 @@ function reducer(state, action) {
       return { ...state, language: action.payload };
     case "setGiveUp":
       return { ...state, giveUp: action.payload };
+    case "setEnterSecretWord":
+      return { ...state, enterSecretWord: action.payload };
     default:
       throw new Error(`invalid aciotn type: ${action.type}`);
   }
@@ -44,10 +48,13 @@ function App() {
     dispatch({ type: "setGiveUp", payload: giveUp });
   };
 
+  const setEnterSecretWord = (enterSecretWord) => {
+    dispatch({ type: "setEnterSecretWord", payload: enterSecretWord });
+  };
+
   React.useEffect(() => {
     hookActions.getSecretWord(setSecretWord);
   }, []);
-
   if (!state.secretWord) {
     return (
       <div className="container" data-test="component-spinner">
@@ -66,20 +73,30 @@ function App() {
       <languageContext.Provider value={state.language}>
         <LanguagePicker setLanguage={setLanguage} />
         <guessedWordsContext.GuessedWordsProvider>
-          <successContext.SuccessProvider>
-            {state.giveUp ? (
-              <SecretWordReveal secretWord={state.secretWord} />
-            ) : (
-              <Congrats />
-            )}
-            <NewWordButton
+          {state.enterSecretWord ? (
+            <EntrySecretWord
+              setEnterSecretWord={setEnterSecretWord}
               setSecretWord={setSecretWord}
-              setGiveUp={setGiveUp}
             />
-            <Input secretWord={state.secretWord} />
-            {!state.giveUp ? <GiveUpButton setGiveUp={setGiveUp} /> : ""}
-          </successContext.SuccessProvider>
-          <GuessedWords />
+          ) : (
+            <div>
+              <successContext.SuccessProvider>
+                {state.giveUp ? (
+                  <SecretWordReveal secretWord={state.secretWord} />
+                ) : (
+                  <Congrats />
+                )}
+                <NewWordButton
+                  setSecretWord={setSecretWord}
+                  setGiveUp={setGiveUp}
+                />
+                <Input secretWord={state.secretWord} />
+                {!state.giveUp ? <GiveUpButton setGiveUp={setGiveUp} /> : ""}
+              </successContext.SuccessProvider>
+              <GuessedWords />
+              <EnterSecretWordButton setEnterSecretWord={setEnterSecretWord} />
+            </div>
+          )}
         </guessedWordsContext.GuessedWordsProvider>
       </languageContext.Provider>
     </div>

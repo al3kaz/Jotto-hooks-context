@@ -1,11 +1,11 @@
 import React from "react";
 import { mount } from "enzyme";
-import { findByTestAttr } from "../test/testUtils";
+import { findByTestAttr } from "../../test/testUtils";
 
-import guessedWordsContext from "./contexts/guessedWordsContext";
-import successContext from "./contexts/successContext";
-import Input from "./components/input/Input";
-import GuessedWords from "./components/guessedWords/GuessedWords";
+import guessedWordsContext from "../contexts/guessedWordsContext";
+import successContext from "../contexts/successContext";
+import Input from "../components/input/Input";
+import GuessedWords from "../components/guessedWords/GuessedWords";
 
 function setup(guessedWordsStrings = [], secretWord = "party") {
   const wrapper = mount(
