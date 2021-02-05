@@ -12,9 +12,9 @@ import NewWordButton from "./components/newWordButton/NewWordButton";
 import GiveUpButton from "./components/giveUpButton/GiveUpButton";
 import SecretWordReveal from "./components/secretWordReveal/SecretWordReveal";
 
-import "./App.css";
 import EnterSecretWordButton from "./components/enterSecretWordButton/EnterSecretWordButton";
 import EntrySecretWord from "./components/entrySecretWord/EntrySecretWord";
+import ServerError from "./components/serverError/ServerError";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -26,6 +26,8 @@ function reducer(state, action) {
       return { ...state, giveUp: action.payload };
     case "setEnterSecretWord":
       return { ...state, enterSecretWord: action.payload };
+    case "setServerError":
+      return { ...state, serverError: action.payload };
     default:
       throw new Error(`invalid aciotn type: ${action.type}`);
   }
@@ -52,26 +54,36 @@ function App() {
     dispatch({ type: "setEnterSecretWord", payload: enterSecretWord });
   };
 
+  const setServerError = (serverError) => {
+    dispatch({ type: "setServerError", payload: serverError });
+  };
+
   React.useEffect(() => {
-    hookActions.getSecretWord(setSecretWord);
+    hookActions.getSecretWord(setSecretWord, setServerError);
   }, []);
+  console.log(state.serverError);
+
+  if (state.serverError) {
+    return <ServerError />;
+  }
+
   if (!state.secretWord) {
     return (
       <div className="container" data-test="component-spinner">
         <div className="spinner-border" role="status">
           <span className="sr-only">Loading...</span>
         </div>
-        <p>Loading secret word</p>
+        <p>Loading...</p>
       </div>
     );
   }
 
   return (
     <div className="container" data-test="component-app">
-      <h1>Jotto</h1>
-      <p>{state.secretWord}</p>
       <languageContext.Provider value={state.language}>
         <LanguagePicker setLanguage={setLanguage} />
+        <h1>Jotto</h1>
+        <p>"{state.secretWord}"</p>
         <guessedWordsContext.GuessedWordsProvider>
           {state.enterSecretWord ? (
             <EntrySecretWord

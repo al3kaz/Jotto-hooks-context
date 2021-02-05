@@ -23,7 +23,7 @@ function Input({ secretWord }) {
       <form className="form-inline">
         <input
           data-test="input-box"
-          className="mb-2 mx-sm-3"
+          className="mb-2 mx-sm-3 mr-1"
           type="text"
           placeholder={stringsModule.getStringByLanguage(
             language,

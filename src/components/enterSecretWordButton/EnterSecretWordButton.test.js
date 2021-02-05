@@ -62,4 +62,12 @@ describe("languagePicker", () => {
     );
     expect(component.text()).toBe("👩‍💻🤫🔤");
   });
+  test("correctly renders button text string in pl", () => {
+    const wrapper = setup({ language: "pl" });
+    const component = findByTestAttr(
+      wrapper,
+      "component-enter-secret-word-button"
+    );
+    expect(component.text()).toBe("Dodaj swoje tajne słowo");
+  });
 });

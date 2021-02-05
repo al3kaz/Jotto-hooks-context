@@ -33,6 +33,11 @@ describe("language picker", () => {
     const component = findByTestAttr(wrapper, "submit-button");
     expect(component.text()).toBe("🚀");
   });
+  test("correctly renders button string in pl", () => {
+    const wrapper = setup({ language: "pl" });
+    const component = findByTestAttr(wrapper, "submit-button");
+    expect(component.text()).toBe("Potwierdź");
+  });
 });
 
 test("Input render without error", () => {

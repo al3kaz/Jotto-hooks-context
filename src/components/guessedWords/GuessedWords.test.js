@@ -63,4 +63,11 @@ describe("languagePicker", () => {
     const guessInstrucions = findByTestAttr(wrapper, "guess-instructions");
     expect(guessInstrucions.text()).toBe("🤔🤫🔤");
   });
+  test("correctly render guess instructions string in pl", () => {
+    const mockUseContext = jest.fn().mockReturnValue("pl");
+    React.useContext = mockUseContext;
+    const wrapper = setup([]);
+    const guessInstrucions = findByTestAttr(wrapper, "guess-instructions");
+    expect(guessInstrucions.text()).toBe("Spróbuj odgadnąć tajne słowo!");
+  });
 });

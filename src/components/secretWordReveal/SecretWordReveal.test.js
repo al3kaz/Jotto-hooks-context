@@ -44,4 +44,9 @@ describe("languagePicker", () => {
     const component = findByTestAttr(wrapper, "component-reveal");
     expect(component.text()).toContain("🍀✨🔤");
   });
+  test("correctly renders `better luck` string in pl", () => {
+    const wrapper = setup({ setGiveUp: true, language: "pl" });
+    const component = findByTestAttr(wrapper, "component-reveal");
+    expect(component.text()).toContain("Następnym razem Ci się uda!");
+  });
 });

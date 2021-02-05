@@ -27,6 +27,10 @@ describe("language picker", () => {
     const wrapper = setup({ success: true, language: "emoji" });
     expect(wrapper.text()).toBe("🎯🎉");
   });
+  test("correctly renders congrats string in pl", () => {
+    const wrapper = setup({ success: true, language: "pl" });
+    expect(wrapper.text()).toBe("Gratulacje! Zgadłeś słowo");
+  });
 });
 
 test("renders without error", () => {

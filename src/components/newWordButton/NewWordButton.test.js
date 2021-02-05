@@ -90,4 +90,9 @@ describe("languagePicker", () => {
     const component = findByTestAttr(wrapper, "component-new-word-button");
     expect(component.text()).toBe("✨🔤");
   });
+  test("correctly renders button text string in pl", () => {
+    const wrapper = setup({ success: true, language: "pl" });
+    const component = findByTestAttr(wrapper, "component-new-word-button");
+    expect(component.text()).toBe("Nowe słowo");
+  });
 });

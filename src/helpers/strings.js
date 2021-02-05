@@ -1,4 +1,20 @@
 const languageStrings = {
+  pl: {
+    congrats: "Gratulacje! Zgadłeś słowo",
+    submit: "Potwierdź",
+    guessPrompt: "Spróbuj odgadnąć tajne słowo!",
+    guessInputPlaceholder: "zgadnij",
+    guessColumnHeader: "Słowa, które próbowałeś",
+    guessedWords: "Domysły",
+    matchingLettersColumnHeader: "Pasujące litery",
+    newWord: "Nowe słowo",
+    totalCount: "Liczba prób",
+    giveUp: "Poddaje się",
+    secretWordWas: "Szukanym słowem było",
+    betterLuck: "Następnym razem Ci się uda!",
+    enterSecretWord: "Dodaj swoje tajne słowo",
+    serverError: "Problem z serwerem. Spróbuj później",
+  },
   en: {
     congrats: "Congratulations! You guessed the word!",
     submit: "Submit",
@@ -9,11 +25,12 @@ const languageStrings = {
     matchingLettersColumnHeader: "Matching Letters",
     newWord: "New Word",
     totalCount: "Total Guesses ",
-    reveal: "The secret word was",
     giveUp: "Give Up",
     secretWordWas: "The secret word was",
     betterLuck: "Better luck next time!",
     enterSecretWord: "Enter your own secret word",
+    serverError:
+      "There was an error retrieving the secret word. Please try again later.",
   },
   emoji: {
     congrats: "🎯🎉",
@@ -25,11 +42,11 @@ const languageStrings = {
     matchingLettersColumnHeader: "✅",
     newWord: "✨🔤",
     totalCount: "🧮",
-    reveal: "🤫🔤",
     giveUp: "😩",
     secretWordWas: "🤫🔤",
     betterLuck: "🍀✨🔤",
     enterSecretWord: "👩‍💻🤫🔤",
+    serverError: "🚨. ⏲.",
   },
 };
 

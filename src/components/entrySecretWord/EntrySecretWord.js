@@ -1,8 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import languageContext from "../../contexts/languageContext";
+import stringsModule from "../../helpers/strings";
+
 function EntrySecretWord({ setEnterSecretWord, setSecretWord, giveUp }) {
   const [entryWord, setEntryWord] = React.useState("");
+  const language = React.useContext(languageContext);
+
   return (
     <div data-test="component-entry-secret-word">
       <form>
@@ -28,7 +33,7 @@ function EntrySecretWord({ setEnterSecretWord, setSecretWord, giveUp }) {
             giveUp(false);
           }}
         >
-          submit
+          {stringsModule.getStringByLanguage(language, "submit")}
         </button>
       </form>
     </div>

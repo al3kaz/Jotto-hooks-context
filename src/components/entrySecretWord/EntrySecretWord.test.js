@@ -1,19 +1,24 @@
 import React from "react";
 import { mount } from "enzyme";
 
+import languageContext from "../../contexts/languageContext";
+
 import { findByTestAttr, checkProps } from "../../../test/testUtils";
 import EntrySecretWord from "./EntrySecretWord";
 
-const setup = ({ setEnterSecretWord, setSecretWord, giveUp }) => {
+const setup = ({ setEnterSecretWord, setSecretWord, giveUp, language }) => {
+  language = language || false;
   setEnterSecretWord = setEnterSecretWord || function () {};
   setSecretWord = setSecretWord || function () {};
   giveUp = giveUp || function () {};
   return mount(
-    <EntrySecretWord
-      setSecretWord={setSecretWord}
-      setEnterSecretWord={setEnterSecretWord}
-      giveUp={giveUp}
-    />
+    <languageContext.Provider value={language}>
+      <EntrySecretWord
+        setSecretWord={setSecretWord}
+        setEnterSecretWord={setEnterSecretWord}
+        giveUp={giveUp}
+      />
+    </languageContext.Provider>
   );
 };
 
@@ -85,6 +90,19 @@ describe("submit calls the correct functions", () => {
 });
 
 describe("languagePicker", () => {
-  test("correctly renders submit string in english", () => {});
-  test("correctly renders congrats string in emoji", () => {});
+  test("correctly renders submit string in english", () => {
+    const wrapper = setup({ language: "en" });
+    const component = findByTestAttr(wrapper, "component-entry-secret-word");
+    expect(component.text()).toBe("Submit");
+  });
+  test("correctly renders congrats string in emoji", () => {
+    const wrapper = setup({ language: "emoji" });
+    const component = findByTestAttr(wrapper, "component-entry-secret-word");
+    expect(component.text()).toBe("🚀");
+  });
+  test("correctly renders submit string in pl", () => {
+    const wrapper = setup({ language: "pl" });
+    const component = findByTestAttr(wrapper, "component-entry-secret-word");
+    expect(component.text()).toBe("Potwierdź");
+  });
 });

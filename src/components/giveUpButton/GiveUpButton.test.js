@@ -50,4 +50,9 @@ describe("languagePicker", () => {
     const component = findByTestAttr(wrapper, "component-give-up-button");
     expect(component.text()).toBe("😩");
   });
+  test("correctly renders button text string in pl", () => {
+    const wrapper = setup({ setGiveUp: true, language: "pl" });
+    const component = findByTestAttr(wrapper, "component-give-up-button");
+    expect(component.text()).toBe("Poddaje się");
+  });
 });
