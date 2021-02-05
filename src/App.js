@@ -75,6 +75,7 @@ function App() {
         <guessedWordsContext.GuessedWordsProvider>
           {state.enterSecretWord ? (
             <EntrySecretWord
+              giveUp={setGiveUp}
               setEnterSecretWord={setEnterSecretWord}
               setSecretWord={setSecretWord}
             />

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function EntrySecretWord({ setEnterSecretWord, setSecretWord }) {
+function EntrySecretWord({ setEnterSecretWord, setSecretWord, giveUp }) {
   const [entryWord, setEntryWord] = React.useState("");
   return (
     <div data-test="component-entry-secret-word">
@@ -25,6 +25,7 @@ function EntrySecretWord({ setEnterSecretWord, setSecretWord }) {
             setSecretWord(entryWord);
             setEnterSecretWord(false);
             setEntryWord("");
+            giveUp(false);
           }}
         >
           submit
@@ -35,6 +36,7 @@ function EntrySecretWord({ setEnterSecretWord, setSecretWord }) {
 }
 
 EntrySecretWord.propTypes = {
+  giveUp: PropTypes.func.isRequired,
   setEnterSecretWord: PropTypes.func.isRequired,
   setSecretWord: PropTypes.func.isRequired,
 };

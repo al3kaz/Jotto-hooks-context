@@ -4,13 +4,15 @@ import { mount } from "enzyme";
 import { findByTestAttr, checkProps } from "../../../test/testUtils";
 import EntrySecretWord from "./EntrySecretWord";
 
-const setup = ({ setEnterSecretWord, setSecretWord }) => {
+const setup = ({ setEnterSecretWord, setSecretWord, giveUp }) => {
   setEnterSecretWord = setEnterSecretWord || function () {};
   setSecretWord = setSecretWord || function () {};
+  giveUp = giveUp || function () {};
   return mount(
     <EntrySecretWord
       setSecretWord={setSecretWord}
       setEnterSecretWord={setEnterSecretWord}
+      giveUp={giveUp}
     />
   );
 };
@@ -23,6 +25,7 @@ test("SecretWordEntry renders without error", () => {
 
 test("does not throw warning with expected props", () => {
   const expectedProps = {
+    giveUp: function () {},
     setEnterSecretWord: function () {},
     setSecretWord: function () {},
   };
@@ -43,15 +46,19 @@ describe("submit calls the correct functions", () => {
   const mockSetEnterSecretWord = jest.fn();
   const mockSetSecretWord = jest.fn();
   const mockSetEntryWord = jest.fn();
+  const mockGiveUp = jest.fn();
   let wrapper;
 
   beforeEach(() => {
     mockSetEnterSecretWord.mockClear();
     mockSetSecretWord.mockClear();
+    mockGiveUp.mockClear();
+
     React.useState = jest.fn(() => ["train", mockSetEntryWord]);
     wrapper = setup({
       setEnterSecretWord: mockSetEnterSecretWord,
       setSecretWord: mockSetSecretWord,
+      giveUp: mockGiveUp,
     });
 
     //simulate entering word into input
@@ -71,6 +78,9 @@ describe("submit calls the correct functions", () => {
   });
   test("expect custom secret word state to be reset to empty string", () => {
     expect(mockSetEntryWord).toHaveBeenCalledWith("");
+  });
+  test("expect giveUp to be called with false", () => {
+    expect(mockGiveUp).toHaveBeenCalledWith(false);
   });
 });
 
