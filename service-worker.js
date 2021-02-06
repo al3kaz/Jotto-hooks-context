@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Jotto-hooks-context/precache-manifest.9ccb473ac5bb4b56e916839bbe63e5f7.js"
+  "/Jotto-hooks-context/precache-manifest.9c7db055add35fccd2b6a60744ea50fc.js"
 );
 
 self.addEventListener('message', (event) => {
