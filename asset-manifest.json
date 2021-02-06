@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Jotto-hooks-context/static/css/main.69eda509.chunk.css",
+    "main.js": "/Jotto-hooks-context/static/js/main.0f104632.chunk.js",
+    "main.js.map": "/Jotto-hooks-context/static/js/main.0f104632.chunk.js.map",
+    "runtime-main.js": "/Jotto-hooks-context/static/js/runtime-main.afd31f99.js",
+    "runtime-main.js.map": "/Jotto-hooks-context/static/js/runtime-main.afd31f99.js.map",
+    "static/js/2.ec4a46da.chunk.js": "/Jotto-hooks-context/static/js/2.ec4a46da.chunk.js",
+    "static/js/2.ec4a46da.chunk.js.map": "/Jotto-hooks-context/static/js/2.ec4a46da.chunk.js.map",
+    "index.html": "/Jotto-hooks-context/index.html",
+    "precache-manifest.9ccb473ac5bb4b56e916839bbe63e5f7.js": "/Jotto-hooks-context/precache-manifest.9ccb473ac5bb4b56e916839bbe63e5f7.js",
+    "service-worker.js": "/Jotto-hooks-context/service-worker.js",
+    "static/css/main.69eda509.chunk.css.map": "/Jotto-hooks-context/static/css/main.69eda509.chunk.css.map",
+    "static/js/2.ec4a46da.chunk.js.LICENSE.txt": "/Jotto-hooks-context/static/js/2.ec4a46da.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.afd31f99.js",
+    "static/js/2.ec4a46da.chunk.js",
+    "static/css/main.69eda509.chunk.css",
+    "static/js/main.0f104632.chunk.js"
+  ]
+}
