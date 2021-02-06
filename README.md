@@ -1,13 +1,23 @@
-Jotto word game useing hooks and context
-React testing with Jest and Enzyme
+Jotto word game. Try to find secret word!<br>
 
-[Live Demo]()
+React, hooks and context.<br>
 
-## Available Scripts
+Most important for me was testing and i used Jest and Enzyme for that.<br>
 
-In the project directory, you can run:
+I know It's overkill to create all this context here but it's for practise.<br>
+
+In live demo version you have one secret word permanently entered,<br>
+but You can add your own secret word.<br>
+
+In demo version below the secret word is visible above the input.<br>
+
+[Live Demo](https://al3kaz.github.io/Jotto-hooks-context/)<br>
+
+To fully test this app you need to clone this repo and also server from [here](https://github.com/al3kaz/jotto-word-server) and run commands below.
 
 ### `npm install`
+
+You need
 
 ### `npm start`
 
