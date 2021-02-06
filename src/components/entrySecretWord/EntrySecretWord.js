@@ -17,7 +17,7 @@ function EntrySecretWord({ setEnterSecretWord, setSecretWord, giveUp }) {
           type="text"
           value={entryWord}
           onChange={(e) => {
-            setEntryWord(e.target.value);
+            setEntryWord(e.target.value.toLowerCase());
           }}
         />
         <button

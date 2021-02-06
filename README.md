@@ -6,10 +6,9 @@ Most important for me was testing and i used Jest and Enzyme for that.<br>
 
 I know It's overkill to create all this context here but it's for practise.<br>
 
-In live demo version you have one secret word permanently entered,<br>
-but You can add your own secret word.<br>
+In live demo version you have one secret word permanently entered and it's "party".<br>
 
-In demo version below the secret word is visible above the input.<br>
+but you or someone else can add your own secret word!<br>
 
 [Live Demo](https://al3kaz.github.io/Jotto-hooks-context/)<br>
 

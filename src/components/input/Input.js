@@ -31,7 +31,7 @@ function Input({ secretWord }) {
           )}
           value={currentGuess}
           onChange={(e) => {
-            setCurrentGuess(e.target.value);
+            setCurrentGuess(e.target.value.toLowerCase());
           }}
         />
         <button
